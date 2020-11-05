@@ -1,0 +1,18 @@
+1.CREATE KEYSPACE Student WITH REPLICATION 
+={'class':'SimpleStrategy','replication_factor':1};
+
+2. use Student;
+3. CREATE COLUMN FAMILY Student_Info (Stud_id int PRIMARY KEY, StudName text, 
+DateOfJoining timestamp, Sem int, DeptName text);
+
+4. BEGIN BATCH
+ ... insert into Student_Info (Stud_id, StudName, DateOfJoining, Sem, 
+DeptName) values (120,'ABC','2020-01-01',7,'CSE');
+ ... insert into Student_Info (Stud_id, StudName, DateOfJoining, Sem, 
+DeptName) values (121,'XYZ','2020-02-01',6,'ECE');
+ ... APPLY BATCH;
+
+
+5- Update Student_Info SET StudName='AAA' WHERE Stud_id=121;
+
+6. Select * from Student_Info;
